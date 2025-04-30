@@ -7,3 +7,8 @@ pytest -v --cov=convertations --cov=binary_operations --cov-report=html binary_o
 ```
 
 2) Откройте файл htmlcov\index.html
+
+## Видеоотчет
+
+https://github.com/user-attachments/assets/de06ef3f-4d82-4663-bc38-fd052a274088
+
