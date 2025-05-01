@@ -10,5 +10,5 @@ pytest -v --cov=convertations --cov=binary_operations --cov-report=html binary_o
 
 ## Видеоотчет
 
-https://github.com/user-attachments/assets/de06ef3f-4d82-4663-bc38-fd052a274088
+https://github.com/user-attachments/assets/1ccfb2cb-4152-437c-ad7a-25a23fc65698
 
