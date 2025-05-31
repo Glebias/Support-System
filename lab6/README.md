@@ -9,3 +9,6 @@ pytest -v --cov=main --cov-report=html test.py # Запуск тестов и с
 2) Откройте файл htmlcov\index.html
 
 ## Видеоотчет
+
+https://github.com/user-attachments/assets/fc1884a2-01e1-4a4e-b7a5-643e68cec6df
+
