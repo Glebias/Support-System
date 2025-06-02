@@ -10,4 +10,5 @@ pytest -v --cov=main --cov-report=html test.py # Запуск тестов и с
 
 ## Видеоотчет
 
+https://github.com/user-attachments/assets/6ad8e9b6-89f3-4d21-a008-c7d24bbf4502
 
