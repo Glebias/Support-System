@@ -171,11 +171,6 @@ def float_sum_by_standart(num1: float, num2: float) -> str:
         mantissa1 = shift_mantissa(mantissa1, exponent2 - exponent1)
         exponent = exponent2
 
-    # Приводим мантиссы к одинаковой длине
-    max_len = max(len(mantissa1), len(mantissa2))
-    mantissa1 = mantissa1.ljust(max_len, '0')
-    mantissa2 = mantissa2.ljust(max_len, '0')
-
     # Сложение мантисс
     result_mantissa = add_mantissas(mantissa1, mantissa2)
 

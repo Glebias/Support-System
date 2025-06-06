@@ -6,9 +6,7 @@ class ExpressionParser:
         self.operators = {
             'not': {'prec': 5, 'assoc': 'right'},
             '!': {'prec': 5, 'assoc': 'right'},
-            'and': {'prec': 4, 'assoc': 'left'},
             '&': {'prec': 4, 'assoc': 'left'},
-            'or': {'prec': 3, 'assoc': 'left'},
             '|': {'prec': 3, 'assoc': 'left'},
             '→': {'prec': 2, 'assoc': 'right'},
             '↔': {'prec': 1, 'assoc': 'left'},

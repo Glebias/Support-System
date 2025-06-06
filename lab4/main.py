@@ -2,11 +2,6 @@ from itertools import product
 from typing import List, Set
 
 
-class Term:
-    def __init__(self, vars_: str):
-        self.vars = vars_
-
-
 def print_truth_table():
     print("\nТаблица истинности ОДС-3:")
     print("| X1 | X2 | X3 | s | c |")
@@ -116,51 +111,6 @@ def sdnf_for_c() -> Set[str]:
     print(" ∨ ".join(f"({format_term(t, var_names)})" for t in minimized))
     return minimized
 
-
-def analyze_circuit(min_s: Set[str], min_c: Set[str]):
-    print("\nАнализ логических элементов после минимизации:")
-
-    # Инверторов по одному на вход X1, X2, X3
-    inverters = 3
-
-    # Для s
-    and_gates_s = len(min_s)
-    and_inputs_s = sum(3 - t.count('-') for t in min_s)
-    or_inputs_s = len(min_s)
-
-    # Для c
-    and_gates_c = len(min_c)
-    and_inputs_c = sum(3 - t.count('-') for t in min_c)
-    or_inputs_c = len(min_c)
-
-    print(f"Для реализации s ({len(min_s)} термов):")
-    print(f"  - Схем И: {and_gates_s} (всего входов: {and_inputs_s})")
-    print(f"  - Схема ИЛИ: 1 (на {or_inputs_s} входов)")
-
-    print(f"\nДля реализации c ({len(min_c)} термов):")
-    print(f"  - Схем И: {and_gates_c} (всего входов: {and_inputs_c})")
-    print(f"  - Схема ИЛИ: 1 (на {or_inputs_c} входов)")
-
-    print("\nОбщие элементы:")
-    print(f"  - Инверторы: {inverters} (по одному на каждый вход)")
-
-    # Приблизительный подсчет транзисторов
-    transistor_count = inverters * 2  # по 2 транзистора на инвертор
-
-    # Для каждой AND: 4 транзистора базовых + 2 за каждый вход
-    for t in min_s:
-        inputs = 3 - t.count('-')
-        transistor_count += 4 + inputs * 2
-    for t in min_c:
-        inputs = 3 - t.count('-')
-        transistor_count += 4 + inputs * 2
-
-    # Для каждой OR: 4 транзистора базовых + 2 за каждый вход
-    transistor_count += (4 + or_inputs_s * 2) + (4 + or_inputs_c * 2)
-
-    print(f"\nОриентировочное количество транзисторов: {transistor_count}")
-
-
 def format_dnf_term(term: str, var_names: List[str]) -> str:
     """Используется при печати минимизированной СДНФ."""
     parts = []
@@ -176,7 +126,6 @@ def parse_dnf_term(term: str, var_names: List[str]) -> str:
     Преобразует текст вида '!A&B&C&D' в строку '0101' (без пробелов),
     используя фиксированный список var_names столбцом.
     """
-    # Словарь для A,B,C,D
     values = {var: None for var in var_names}
     for literal in term.split('&'):
         literal = literal.strip()
@@ -184,20 +133,7 @@ def parse_dnf_term(term: str, var_names: List[str]) -> str:
             values[literal[1:]] = '0'
         else:
             values[literal] = '1'
-    # Любые не упомянутые переменные — don’t care
     return ''.join(values[var] if values[var] is not None else '-' for var in var_names)
-
-
-def parse_function(input_str: str, var_names: List[str]) -> List[Term]:
-    """Парсит СДНФ вида '(A&!B&C)|(B&C)' в список Term."""
-    terms: List[Term] = []
-    for raw in input_str.split('|'):
-        t = raw.strip().strip('()')
-        if not t:
-            continue
-        bin_str = parse_dnf_term(t, var_names)
-        terms.append(Term(bin_str))
-    return terms
 
 
 def to_bcd(n: int) -> tuple:
@@ -226,7 +162,6 @@ def print_bcd_converter():
             if y == 1:
                 sdnf_Y[j].append(term)
 
-    # Печать СДНФ и минимизация для каждого выхода
     for idx, output_terms in enumerate(sdnf_Y, start=1):
         Ti = f"Y{idx}"
         print(f"\nСДНФ для {Ti}:")
@@ -237,16 +172,11 @@ def print_bcd_converter():
         sdnf_str = " ∨ ".join(f"({t})" for t in output_terms)
         print(sdnf_str)
 
-        # Собираем минтермы в бинарный вид
         terms_bin = [parse_dnf_term(t, var_names) for t in output_terms]
-
-        # Минимизация
         minimized = minimize_sdnf(terms_bin, var_names.copy())
 
         print(f"\nМинимизированная СДНФ для {Ti}:")
-        print(
-            " ∨ ".join(f"({format_dnf_term(m, var_names)})" for m in minimized)
-        )
+        print(" ∨ ".join(f"({format_dnf_term(m, var_names)})" for m in minimized))
 
 
 def get_sdnf_4bit() -> (List[List[str]], List[str]):
@@ -293,36 +223,13 @@ def print_sdnf_for_4bit():
         print(sdnf_str)
 
 
-def process_bcd_conversion(number: int):
-    print(f"\n=== Обработка числа {number} ===")
-    decimal = number % 10
-    result = (decimal + 6) % 10
-    in_bits = to_bcd(decimal)
-    out_bits = to_bcd(result)
-
-    print(f"Входное число: {number} (используется: {decimal}, результат: {result})")
-    print("Вход (Д8421):", ' '.join(map(str, in_bits)))
-    print("Выход (Д8421+6):", ' '.join(map(str, out_bits)), f"(десятичное: {result})")
-
-
 def main():
     print_truth_table()
     minimized_s = sdnf_for_s()
     minimized_c = sdnf_for_c()
-    analyze_circuit(minimized_s, minimized_c)
 
     print_bcd_converter()
     print_sdnf_for_4bit()
-
-    while True:
-        try:
-            num = int(input("\nВведите целое число (для выхода введите отрицательное число): "))
-            if num < 0:
-                break
-            process_bcd_conversion(num)
-        except ValueError:
-            print("Некорректный ввод. Повторите.")
-
 
 if __name__ == "__main__":
     main()

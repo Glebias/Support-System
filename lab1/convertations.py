@@ -132,9 +132,6 @@ def convert_digit_by_standart(digit_to_convert):
         binary_fractional += str(bit)
         fractional_part -= bit
 
-    # Объединяем целую и дробную части
-    binary_number = binary_integer + '.' + binary_fractional
-
     # Нормализуем число (приводим к виду 1.xxxx * 2^exp)
     if binary_integer == '0':
         # Если целая часть равна нулю, ищем первую единицу в дробной части

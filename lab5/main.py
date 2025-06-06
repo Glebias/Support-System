@@ -1,13 +1,4 @@
-from itertools import product
 from typing import List, Set
-
-# -------------------------------------------------------------------
-# Класс для хранения термов при минимизации методом Квайна–Мак-Класки
-# -------------------------------------------------------------------
-class Term:
-    def __init__(self, vars_: str):
-        self.vars = vars_  
-
 
 def format_term(term: str, var_names: List[str]) -> str:
     """
@@ -97,8 +88,7 @@ def generate_counter_truth_tables():
     """
     table_rows = []
     minterms_T = [[] for _ in range(4)]
-    var_names = ['Q3', 'Q2', 'Q1', 'Q0']
-
+    
     for state in range(16):
         # Текущее состояние (Q3, Q2, Q1, Q0)
         bits = tuple(int(b) for b in format(state, '04b'))
@@ -171,15 +161,7 @@ def print_truth_table(table_rows):
 
 
 def synthesize_and_minimize_counter():
-    """
-    Печатает:
-      1) Полностью таблицу истинности.
-      2) Для каждого T3..T0:
-         - Минтермы, где T_i = 1.
-         - Исходную СДНФ.
-         - Процесс минимизации (итерации «склейки»).
-         - Итоговую минимизированную СДНФ.
-    """
+
     var_names = ['Q3', 'Q2', 'Q1', 'Q0']
     table_rows, minterms_T = generate_counter_truth_tables()
 

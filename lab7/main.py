@@ -186,52 +186,52 @@ def generate_test_matrix():
     return matrix
 
 # Пример использования
-# if __name__ == "__main__":
-#     # Генерируем тестовую матрицу 16x16
-#     matrix = generate_test_matrix()
+if __name__ == "__main__":
+    # Генерируем тестовую матрицу 16x16
+    matrix = generate_test_matrix()
     
-#     print("Первые 4 строки матрицы:")
-#     for i in range(4):
-#         print(''.join(str(bit) for bit in matrix[i][:4]) + "...")
+    print("Первые 4 строки матрицы:")
+    for i in range(4):
+        print(''.join(str(bit) for bit in matrix[i][:4]) + "...")
     
-#     processor = DiagMatrixProcessor(matrix)
+    processor = DiagMatrixProcessor(matrix)
     
-#     # Параметры варианта 3
-#     col_a = 0  # Первый столбец
-#     col_b = 1  # Второй столбец
-#     v_value = 0b101  # V=5 (0b101)
+    # Параметры варианта 3
+    col_a = 0  # Первый столбец
+    col_b = 1  # Второй столбец
+    v_value = 0b101  # V=5 (0b101)
     
-#     # Выполняем операции варианта 3
-#     results = processor.execute_variant3(col_a, col_b, v_value)
+    # Выполняем операции варианта 3
+    results = processor.execute_variant3(col_a, col_b, v_value)
     
-#     print("\nРезультаты логических операций (первые 5 элементов):")
-#     for func, data in results.items():
-#         print(f"{func}: {data[:5]}")
+    print("\nРезультаты логических операций (первые 5 элементов):")
+    for func, data in results.items():
+        print(f"{func}: {data[:5]}")
     
-#     # Проверяем изменения в матрице для слов с V=5
-#     print("\nПроверка обновления поля A:")
-#     # Для столбца 2, start_row=3
-#     word_before = processor.get_word(2, 3)
-#     print(f"Слово (col=2, start_row=3) до: {word_before:016b}")
+    # Проверяем изменения в матрице для слов с V=5
+    print("\nПроверка обновления поля A:")
+    # Для столбца 2, start_row=3
+    word_before = processor.get_word(2, 3)
+    print(f"Слово (col=2, start_row=3) до: {word_before:016b}")
     
-#     # Для столбца 3, start_row=7
-#     word_before = processor.get_word(3, 7)
-#     print(f"Слово (col=3, start_row=7) до: {word_before:016b}")
+    # Для столбца 3, start_row=7
+    word_before = processor.get_word(3, 7)
+    print(f"Слово (col=3, start_row=7) до: {word_before:016b}")
     
-#     # После обработки
-#     print("\nОбновленная матрица (первые 4 строки):")
-#     for i in range(4):
-#         print(''.join(str(bit) for bit in processor.mat[i][:4]) + "...")
+    # После обработки
+    print("\nОбновленная матрица (первые 4 строки):")
+    for i in range(4):
+        print(''.join(str(bit) for bit in processor.mat[i][:4]) + "...")
     
-#     word_after = processor.get_word(2, 3)
-#     print(f"\nСлово (col=2, start_row=3) после: {word_after:016b}")
+    word_after = processor.get_word(2, 3)
+    print(f"\nСлово (col=2, start_row=3) после: {word_after:016b}")
     
-#     word_after = processor.get_word(3, 7)
-#     print(f"Слово (col=3, start_row=7) после: {word_after:016b}")
+    word_after = processor.get_word(3, 7)
+    print(f"Слово (col=3, start_row=7) после: {word_after:016b}")
     
-#     # Получаем и выводим отсортированный список слов
-#     sorted_words = processor.get_sorted_words()
-#     print("\nОтсортированные слова (первые 5):")
-#     for word in sorted_words[:5]:
-#         print(f"{word:016b} (дес: {word})")
+    # Получаем и выводим отсортированный список слов
+    sorted_words = processor.get_sorted_words()
+    print("\nОтсортированные слова (первые 5):")
+    for word in sorted_words[:5]:
+        print(f"{word:016b} (дес: {word})")
         
