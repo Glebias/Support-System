@@ -128,28 +128,28 @@ def sum_by_key(matrix, key: List[int]):
     return matrix
 
 
-# if __name__ == "__main__":
-#     matrix = build_matrix(16)
+if __name__ == "__main__":
+    matrix = build_matrix(16)
 
-#     print("Исходная матрица:")
-#     print_matrix(matrix)
+    print("Исходная матрица:")
+    print_matrix(matrix)
 
-#     idx = 2
-#     word1 = get_word(matrix, idx)
-#     word2 = read_addressed_column(matrix, idx)
-#     print(f"Получили слово под номером {idx}:")
-#     print(' '.join(str(x) for x in word1))
-#     print(f"Получили адресный столбец под номером {idx}:")
-#     print(' '.join(str(x) for x in word2))
+    idx = 2
+    word1 = get_word(matrix, idx)
+    word2 = read_addressed_column(matrix, idx)
+    print(f"Получили слово под номером {idx}:")
+    print(' '.join(str(x) for x in word1))
+    print(f"Получили адресный столбец под номером {idx}:")
+    print(' '.join(str(x) for x in word2))
 
-#     matrix = execute_log_operations(f4,6,7,idx,matrix)
-#     word1 = get_word(matrix, idx)
-#     print(f"Получили новое слово слово под номером {idx}, после применения логических операций:")
-#     print(' '.join(str(x) for x in word1))
+    matrix = execute_log_operations(f4,6,7,idx,matrix)
+    word1 = get_word(matrix, idx)
+    print(f"Получили новое слово слово под номером {idx}, после применения логических операций:")
+    print(' '.join(str(x) for x in word1))
 
-#     matrix = selection_sort(matrix)
-#     print("Матрица после сортировки:")
-#     print_matrix(matrix)
+    matrix = selection_sort(matrix)
+    print("Матрица после сортировки:")
+    print_matrix(matrix)
 
-#     key = [1,0,0]
-#     matrix = sum_by_key(matrix, key) 
+    key = [1,0,0]
+    matrix = sum_by_key(matrix, key) 
