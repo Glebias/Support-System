@@ -1,7 +1,7 @@
 # Smart Support Backend
 
 This repository contains the backend for the Smart Support project. Below are the instructions to set up and run the project.
-
+Presentation: SmartSupport
 ## Prerequisites
 - Python 3.8 or higher
 - Docker (optional, for containerized deployment)
