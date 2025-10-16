@@ -7,6 +7,7 @@ Presentation: SmartSupport
 - Docker (optional, for containerized deployment)
 - Poetry (for dependency management)
 
+
 ## Setup
 
 ### 1. Clone the Repository
@@ -33,6 +34,7 @@ If you prefer to run the project in a containerized environment, use Docker:
 ```bash
 docker-compose up --build
 ```
+## Зарегестрируйтесь как админ пароль и почта одинакове: adsd@asd.asd
 
 ## Project Structure
 - `backend/`: Contains the backend code, including classification, data loading, and vector database logic.
