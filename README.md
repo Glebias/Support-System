@@ -40,3 +40,8 @@ docker-compose up --build
 - `pyproject.toml`: Poetry configuration for dependencies and project settings.
 - `docker-compose.yml`: Docker configuration for containerized deployment.
 
+## Video
+
+https://github.com/user-attachments/assets/cb6b1259-c311-47a8-bb4c-ee78cba1fb27
+
+
