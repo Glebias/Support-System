@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "easy300k"
+version = "0.1.0"
+description = ""
+authors = ["gshjis <ilya.togan@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+scikit-learn = "^1.7.2"
+lightgbm = "^4.6.0"
+fastapi = "^0.119.0"
+pydantic = "^2.12.2"
+uvicorn = "^0.37.0"
+openai = "^2.3.0"
+dotenv = "^0.9.9"
+pandas = "^2.3.3"
+openpyxl = "^3.1.5"
+catboost = "^1.2.8"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.9.0"
+isort = "^7.0.0"
+flake8 = "^7.3.0"
+autoflake = "^2.3.1"
+pre-commit = "^4.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

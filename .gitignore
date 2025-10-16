@@ -1,0 +1,13 @@
+# Ignore cache directories and files
+__pycache__/
+*.pyc
+.cache/
+.mypy_cache/
+.pytest_cache/
+.vscode/
+.idea/
+.env
+# Linter and formatter cache
+.black
+.isort.cfg
+.flake8

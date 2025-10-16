@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app/backend
+    environment:
+      - PYTHONPATH=/app/backend
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload # <-- main:app здесь
+    ports:
+      - "8000:8000"
+
+  smart_support:
+    build:
+      context: ./smart-support
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PRIVATE_UNENC_LOAD=1
+      - NEXT_PRIVATE_DISABLE_ESLINT=1
+      - NEXT_PRIVATE_DISABLE_TS=1
+      - BACKEND_URL=http://backend:8000 # URL для взаимодействия с backend
+    depends_on:
+      - backend
+    networks:
+      - internal_network
+
+networks:
+  internal_network:
+    driver: bridge

@@ -1,0 +1,51 @@
+.chatContainer {
+  padding-top: 5vh;
+  height: calc(95vh - 50px - 80px);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.mainContent {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  gap: 16px;
+  padding: 16px;
+}
+
+.chatSection {
+  flex: 1;
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    flex-direction: column;
+    padding: 8px;
+    gap: 8px;
+    position: relative;
+  }
+  
+  .chatSection {
+    min-height: 300px;
+    flex: 1;
+  }
+  
+  .mainContent:has(.analysisPanel.expanded) .chatSection {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  .mainContent {
+    gap: 20px;
+    padding: 20px;
+  }
+}
